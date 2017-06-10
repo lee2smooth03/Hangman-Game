@@ -1,0 +1,14 @@
+body{
+
+	background-color: green;
+
+}
+
+.statLINE{
+
+	border: 2px black;
+	height: 20px;
+	width: 200px;
+	/* width: 30%; */
+
+}

@@ -1,0 +1,77 @@
+//write this code to step through the HangMan Game
+
+
+// how many things do we need to happen?
+========================================
+
+// 01) first set multiple arrays with different themes:
+
+var anyARRAY = {
+// --  cars 	= [honda, chevrolet, buick, ford, volvo, mercedes, nissan, jeep, toyota, hyundai];
+// --  fruit	= [bananas, pineapples, apples, oranges, grapes, kiwis, strawberries, grapefruit];
+// --  states	= [alabama, alaska, georgia, florida, texas, california, washington, iowa, idaho];
+// --  colors	= [green, yellow, red, orange, purple, cyan, black, white, silver, gold, magenta];
+// --  meds	= [xanax, cabometyx, ocrevus, abarelix, ulesfia, balsalazide, ganirelix, qutenza];
+// --  body	= [brain, arms, legs, torso, hands, feet, digits, lumbar, follicle, nails, hairs];
+// --  plants	= [anemone, carnation, tulip, amaryllis, lily, daffodil, lilac, columbine, aster];
+
+}
+
+// var myArrays = Object.keys(anyARRAY)
+//ex plants would have an index or 6
+//Math.floor((Math.random() * myArrays) + 1);
+
+// 02) need a function to select one of the arrays:
+//	Q: how do we get a function to randomly select an array?
+//	A: use the random function||	Math.floor((Math.random() * Number_Of_Arrays) + 1);
+//	^: the above function selects a number 1 to (however many arrays we have)
+//
+//	Q: how do we know how many arrays exist?
+//
+//	Q: how do we step through arrays, or assign numbers to other arrays?
+//	A: the arrays can be indexed by placing them in another array
+//	^: anyArray[i] = anotherArray
+
+	OR
+
+//	A: set an object equal to "arrays that will be used" then set a for/in loop ...?
+//	^: the for/in loop will step through every array in the object, not select one...
+//	   hmm...
+
+
+// 03) once an array is chosen, select a word from an index:
+//	Q: how do we randomly select a word from an array?
+//	A: use the random function||	Math.floor((Math.random() * Chosen_Array.length);
+//	^: the function above will select any number between 0 and (number of items in the array - 1)
+
+
+// steps (02) and (03) select a random word from a random array
+// console.log(Chosen_Word);
+
+
+// 04) when a word is selected, print a string of blanks (one blank per letter) in the well
+//	Q: how do we step through a string?
+//		for every letter in chosen word, print "_ "
+
+//	Q: do we print it out as an array?
+//	A: even though the user knows this is a word, we store the word in an array...
+//	A: so that we can step though it and compare the input key to each index...
+
+//		A: once a word is selected, use a loop to parse each letter of the word
+//		A: have an empty array set up to receive each letter of the word
+//		A: every time the loop cycles, use the .push() function to build array
+
+//		A: we'll need a variable that changes value based on correct guesses
+
+// 05) compare the user input to the string/array that represents the chosen word
+//	- if the selected key is in the string, change the value of the string from "_ " to "(key) "
+//	- if the selected key is NOT in the string, reduce guesses, add the wrong key to the "wrong key" block	
+
+// 06) update values
+//	- if key not in string or array, --guesses
+//	- if guesses = 0, ++losses, reset the game
+//	- is number of "_ " in string or array = 0, ++wins, reset the game
+	
+// 07) update the page to reflect the new values
+//	Q: how do we change the values on a page
+//	A: use the .innerHTML(newValue) or the .HTML(newValue)
