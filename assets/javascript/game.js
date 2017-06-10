@@ -26,7 +26,8 @@ $(document).ready(function(){
 	//the result of the random number will be used as an index number;
 	var singleArray = Math.floor((Math.random() * manyArrays.length) + 0);
 	console.log(manyArrays[singleArray]);
-	console.log(gameArrays[manyArrays[singleArray]]);
+	
+	//console.log(gameArrays[manyArrays[singleArray]]);
 
 	//console.log("Here is the random number that will act as the index: " + singleArray);
 
@@ -84,6 +85,11 @@ $(document).ready(function(){
 		//$("#gameField").append("_______   ");
 		blankWord.push("_______   ");
 	}
+
+	var wins = 0;
+	var losses = 0;
+	var rGuess = 0;
+	
 	//once the blank work has been built, update the game field
 	$("#gameField").append(blankWord);
 
