@@ -34,6 +34,7 @@
 		<!-- 01) a headlining feature that announces the game: jumbotron -->
 		<div class="jumbotron">
 	  		<h1>Welcome to the Bootcamp Game:</h1>
+	  		<hr>
 	  		<h1><small>Bootcamp Hangman</small></h1>
 
 	  		<!-- 02) section explaining rules and scoring: in jumbotrons -->
@@ -42,12 +43,31 @@
 		</div>
 
 		<!-- 03) one area to display blank letters and correctly guessed -->
-		<div class="well well-lg" id="gameField"></div>
+		<!-- <div class="well well-lg"></div> -->
+
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title" id="theme"></h3>
+  			</div>
+
+  			<div class="panel-body" id="gameField"></div>
+		</div>
 
 		<!-- 04) one area that displays inproperly guessed letters -->
 		<!-- the number guessing game provides the preferred display -->
 		<!-- <div class="well well-lg">A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z</div> -->
-		<div class="well well-lg" id="badGuess"></div>
+		<!-- <div class="well well-lg"></div> -->
+
+
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title"><strong>Wrong Guesses:</strong></h3>
+  			</div>
+
+  			<div class="panel-body" id="badGuess"></div>
+		</div>
+
+
 
 		<!-- 05) we'll display the wins, losses, guesses across the bottom-->
 		<div class="rows">

@@ -1,6 +1,8 @@
 //"use strict"
 $(document).ready(function(){
 
+var wins = 0;
+var losses = 0;
 
 // 01) first set multiple arrays with different themes:
 	var gameArrays = {
@@ -15,7 +17,7 @@ $(document).ready(function(){
 
 	var manyArrays = Object.keys(gameArrays);
 	console.log("This is how many arrays we have to choose from: " + manyArrays.length);
-	
+
 	//console.log(gameArrays.cars[1]); //this works
 	//console.log(manyArrays.length);
 
@@ -53,6 +55,7 @@ $(document).ready(function(){
 			default:
 				return;
 		}
+
 	}
 
 	var playArray = gameArrays[keySelect(singleArray)];	
@@ -65,7 +68,7 @@ $(document).ready(function(){
 
 	//need a variable that will cycle between 0 and the number of items (minus one);
 	//the result of the random number will be used as an index number;
-	var singleItem = Math.floor((Math.random() * playArray.length) + 0);
+	var singleItem = Math.floor((Math.random() * playArray.length));
 	console.log("Here is the random number that will act as the index: " + singleItem);
  	
 	var guessWord = playArray[singleItem];
@@ -86,13 +89,18 @@ $(document).ready(function(){
 		blankWord.push("_______   ");
 	}
 
-	var wins = 0;
-	var losses = 0;
-	var rGuess = 0;
-	
+	//initialize the variables that show up on the page
+	//var wins = 0;
+	//var losses = 0;
+	var rGuess = (guessWord.length - 1);
+
 	//once the blank work has been built, update the game field
 	$("#gameField").append(blankWord);
 
+	$("#wins").html(wins);
+	$("#losses").html(losses);
+	$("#rGuess").html(rGuess);
+	$("#theme").html("<strong>Theme: " + keySelect(singleArray) + "</strong>");
 
 // 05) find a way to compare the user's input to the selected word
 	// when any key is pressed, the function below will run
@@ -106,7 +114,7 @@ $(document).ready(function(){
 
 			case true:
 				//in the event that the pressed key is in the string
-		 		//write a funciton that includes the .indexOf("str")
+		 		//write a function that includes the .indexOf("str")
 		 		//FYI take a look at the .split("str")
 		 		console.log("includes that key");
 				
@@ -117,38 +125,79 @@ $(document).ready(function(){
 						blankWord[i] = meKey.key;
 						$("#gameField").html(blankWord);
 					}
-					else
-						//blankWord[i] = "_______   "
+					else{
 						$("#gameField").html(blankWord);
-				} 		
+					}
+				} 
+
+				//run a function that checks to see if the game is won
+				winGame(blankWord);	
 
 		 		break;
 		 	
-		 	default:
+		 	case false:
 		 		//in the event that the pressed key is not in the string
-		 		console.log("does not includes")
+		 		console.log("does not includes");
+		 		$("#badGuess").append(meKey.key);
 
-		 			$("#badGuess").append(meKey.key);
+		 		//subtract one from the guesses
+		 		--rGuess;
+		 		$("#rGuess").html(rGuess);
+
+		 		//run sequence that checks to see if the game is over
+		 		loseGame(rGuess);
 
 		 		break;
 		 	}
-		//here is the for loop from step (04)
-		 //for (var i = 0; i < guessWord.length; ++i){
-		 	
-		 	//for every letter in the word, compare the key to the letter in word
-		 	//let's use the switch statements (case select) again to determine output
-		 	
-		 	//console.log(guessWord[i]);
-		 	//console.log(meKey.key);
-		 	//$("#gameField").append("_______   ");
 
-		 	// switch(meKey.key){
-		 	// 	case ( guessWord.includes(meKey.key) ): //learned about ".includes()" on 06/10 @ 11:00
-		 	// 		//write a funciton that includes the .indexOf("str")
-		 	// 		//FYI take a look at the .split("str")
-		 	// 		console.log("includes");
-		 	// }
-		 //}
 	});
+
+	function loseGame(num){
+
+		if(num === 0){
+			//add one to losses
+			losses++;
+
+			//update the page
+			$("#losses").html(losses);
+
+			//reset rGuess to 0
+			rGuess = 0;
+
+			//call a new game
+			nextGame();
+		}
+	}
+
+	function winGame(stg){
+		
+		switch(stg.includes("_______")){
+			case true:
+			break;
+
+			case false:
+			++wins;
+			alert("you win");
+			break;
+		}
+
+	}
+
+	function nextGame(){
+
+		alert("next game");
+		reset();
+
+	}
+
+
+	function reset(){
+
+		$("#wins").html("Wins");
+		$("#losses").html("Losses");
+		$("#rGuess").html("Remmaining Guesses");
+		$("#theme").html("<strong>Theme: [[Start New Game]]</strong>");
+	}
+
 
 });
